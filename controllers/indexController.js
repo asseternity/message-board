@@ -1,8 +1,9 @@
 // imports
 const asyncHandler = require('express-async-handler');
+const navLinks = require('../navLinks');
 
 const getIndexNoParams = asyncHandler(async(req, res) => {
-    res.send(`This is the index page`);
+    res.render("index", { navLinks: navLinks });
 })
 
 module.exports = { getIndexNoParams }

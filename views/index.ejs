@@ -5,6 +5,18 @@
     <body>
         <%- include('navbar', {navLinks: navLinks}) %>
         <h1>Index Page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum provident voluptates voluptate numquam deleniti eveniet, aperiam esse reiciendis omnis blanditiis ea fuga voluptatem at itaque rerum quasi quam autem vero!</p>
+        <ul>
+            <% for (let i = 0; i < messages.length; i++) { %>
+                <li>
+                    <h3> <%= messages[i].user %> </h3>
+                    <p> <%= messages[i].text %> </p>
+                    <p> <%= messages[i].added %> </p>
+                    <form method="post" action="/message">
+                        <input type="hidden" name="messageId" value="<%= messages[i].id %>">
+                        <input type="submit" value="Open">
+                    </form>
+                </li>
+            <% } %>
+        </ul>
     </body>
 </html>

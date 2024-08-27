@@ -5,12 +5,6 @@
     <body>
         <%- include('navbar', {navLinks: navLinks}) %>
         <h1>New Page</h1>
-        <form>
-            From:<br>
-            <input type="text" id="from" name="from"><br><br>
-            Message:<br>
-            <textarea id="message" name="message"></textarea><br><br>
-            <input type="submit" value="Send">
-        </form>    
+        <%- include('form'); %>
     </body>
 </html>

@@ -7,6 +7,7 @@ const indexRoute = express.Router();
 
 // route middleware
 indexRoute.get('/', indexController.getIndexNoParams);
+indexRoute.post('/message', indexController.openMessage);
 
 // export
 module.exports = indexRoute;

@@ -7,6 +7,7 @@ const newRoute = express.Router();
 
 // route middleware
 newRoute.get('/', newController.getNewNoParams);
+newRoute.post('/', newController.newPost);
 
 // export
 module.exports = newRoute;

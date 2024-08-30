@@ -1,5 +1,5 @@
 require('dotenv').config();
-import postgres from 'postgres';
+const postgres = require('postgres');
 
 const sql = postgres({
   host: process.env.DATABASE_HOST,

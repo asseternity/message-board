@@ -20,6 +20,7 @@ VALUES
 async function main() {
     console.log('seeding...');
     try {
+<<<<<<< HEAD
         // Use tagged template literals for queries
         await sql`
             ${sql(SQL)}
@@ -29,6 +30,12 @@ async function main() {
         console.error('Error:', err);
     } finally {
         await sql.end(); // Close the connection
+=======
+        await pool(SQL);  // Directly use the pool to execute the SQL
+        console.log('done');
+    } catch (err) {
+        console.error('Error:', err);
+>>>>>>> 2a98324c9db77b35baef45de21b09eefa93d9d5d
     }
 }
 

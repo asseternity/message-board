@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-const pool = require('./pool')
+const pool = require('./pool');
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
@@ -19,10 +19,12 @@ VALUES
 
 async function main() {
     console.log('seeding...');
-    await pool.connect();
-    await pool.query(SQL);
-    await pool.end();
-    console.log('done');
+    try {
+        await pool(SQL);  // Directly use the pool to execute the SQL
+        console.log('done');
+    } catch (err) {
+        console.error('Error:', err);
+    }
 }
 
 main();

@@ -1,6 +1,15 @@
 #! /usr/bin/env node
 
-const pool = require('./pool');
+const postgres = require('postgres');
+require('dotenv').config();
+
+const sql = postgres({
+  host: process.env.DATABASE_HOST,
+  database: process.env.DATABASE_NAME,
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  ssl: 'require',
+});
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
@@ -20,7 +29,6 @@ VALUES
 async function main() {
     console.log('seeding...');
     try {
-<<<<<<< HEAD
         // Use tagged template literals for queries
         await sql`
             ${sql(SQL)}
@@ -30,12 +38,6 @@ async function main() {
         console.error('Error:', err);
     } finally {
         await sql.end(); // Close the connection
-=======
-        await pool(SQL);  // Directly use the pool to execute the SQL
-        console.log('done');
-    } catch (err) {
-        console.error('Error:', err);
->>>>>>> 2a98324c9db77b35baef45de21b09eefa93d9d5d
     }
 }
 

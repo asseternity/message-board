@@ -12,7 +12,7 @@ const newPost = asyncHandler(async(req, res) => {
     let messageText = req.body.message;
     let messageAdded = new Date();
     // let messageId = messages.length;
-    await db.newMessage(messageText, messageAuthor, messageAdded.toString());
+    await db.newMessage(messageText, messageAuthor, messageAdded);
     // messages.push({ text: messageText, user: messageAuthor, added: messageAdded, id: messageId });
     res.redirect('/');
 });

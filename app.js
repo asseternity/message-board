@@ -31,3 +31,12 @@ app.use('/new', newRoute);
 // activating the server
 const PORT = 3000;
 app.listen(PORT, () => { console.log(`Message board active and listening on port: ${PORT}!`) });
+
+// testing
+const db = require('./db/queries');
+async function testDB() {
+    const messages = await db.getAllMessages();
+    console.log(messages);
+}
+
+testDB();

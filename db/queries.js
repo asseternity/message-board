@@ -1,24 +1,21 @@
-const pool = require('./pool')
+const pool = require('./pool');
 
 async function getAllMessages() {
-    // Use tagged template literals for the SELECT query
-    const rows = await pool`SELECT * FROM messages`;
+    const { rows } = await pool.query("SELECT * FROM messages");
     return rows;
 }
 
 async function getOneMessage(id) {
-    // Ensure that you return the row result
-    const rows = await pool`SELECT * FROM messages WHERE id = ${id}`;
+    const { rows } = await pool.query("SELECT * FROM messages WHERE id = $1", [id]);
     return rows;
 }
 
-async function newMessage(text, user, added) {
-    // Correctly insert values using a single VALUES clause
-    await pool`INSERT INTO messages (text, user, added) VALUES (${text}, ${user}, ${added})`;
+async function newMessage(text, username, added) {
+    await pool.query("INSERT INTO messages (text, username, added) VALUES ($1, $2, $3)", [text, username, added]);
 }
 
 module.exports = {
     getAllMessages,
     getOneMessage,
     newMessage
-}
+};

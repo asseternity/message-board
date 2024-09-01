@@ -1,32 +1,44 @@
 #! /usr/bin/env node
 
-require('dotenv').config();
-const { Pool } = require('pg');
-const pool = new Pool();
+const { argv } = require('node:process');
+const { Client } = require('pg');
 
-const now = new Date().toISOString();
+const CREATE_TABLE_SQL = `
+CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    text VARCHAR (255), 
+    username VARCHAR (255), 
+    added TIMESTAMP
+);
+`;
+
+const INSERT_MESSAGES_SQL = `
+INSERT INTO messages (text, username, added) VALUES
+    ($1, $2, $3),
+    ($4, $5, $6),
+    ($7, $8, $9);
+`;
 
 async function main() {
     console.log('seeding...');
-    const client = await pool.connect();
-    try {
-        await client.query('CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, text VARCHAR (255), user VARCHAR (255), added TIMESTAMP)');
-        
-        const query = 'INSERT INTO messages (text, user, added) VALUES ($1, $2, $3), ($4, $5, $6), ($7, $8, $9)';
-        const values = [
-            'Hi there!', 'Aigul3000', now,
-            'Hey there!', 'Azhar4000', now,
-            'Hello there!', 'Akhmet2000', now
-        ];
-        
-        await client.query(query, values);
-        console.log('done');
-    } catch (err) {
-        console.error('Error:', err);
-    } finally {
-        client.release(); // Release the client back to the pool
-        // Do not close the pool here
-    }
+    const client = new Client({
+        connectionString: argv[2],
+    });
+    await client.connect();
+    const now = new Date();
+
+    // Create the table
+    await client.query(CREATE_TABLE_SQL);
+
+    // Insert data
+    await client.query(INSERT_MESSAGES_SQL, [
+        'Hi!', 'zhamal_9000', now,
+        'Hi!', 'daniyar_7000', now,
+        'Hi!', 'maksat_8000', now
+    ]);
+
+    await client.end();
+    console.log('done');
 }
 
 main();

@@ -1,7 +1,6 @@
 // imports
 const asyncHandler = require('express-async-handler');
 const navLinks = require('../navLinks');
-const newController = require('./newController');
 const db = require('../db/queries')
 
 const getIndexNoParams = asyncHandler(async(req, res) => {

@@ -17,4 +17,4 @@ const newPost = asyncHandler(async(req, res) => {
     res.redirect('/');
 });
 
-module.exports = { getNewNoParams, newPost, messages }
+module.exports = { getNewNoParams, newPost }

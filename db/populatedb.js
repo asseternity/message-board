@@ -3,6 +3,7 @@
 require('dotenv').config();
 const pool = require('./pool')
 
+const now = new Date().toISOString();
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -13,9 +14,9 @@ CREATE TABLE IF NOT EXISTS messages (
 
 INSERT INTO messages (text, user, added)
 VALUES
-    ('Hi there!', 'aigul3000', '${new Date().toISOString()}'),
-    ('Hey there!', 'azhar4000', '${new Date().toISOString()}'),
-    ('Hello there!', 'akhmet2000', '${new Date().toISOString()}');
+    ('Hi there!', 'aigul3000', '${now}'),
+    ('Hey there!', 'azhar4000', '${now}'),
+    ('Hello there!', 'akhmet2000', '${now}');
 `;
 
 async function main() {

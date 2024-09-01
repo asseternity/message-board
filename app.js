@@ -29,7 +29,7 @@ app.use('/', indexRoute);
 app.use('/new', newRoute);
 
 // activating the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Message board active and listening on port: ${PORT}!`) });
 
 // testing

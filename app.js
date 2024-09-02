@@ -37,7 +37,11 @@ app.get('/test', (req, res) => {
     res.render('test');
 })
 
-// testing db
+// invoking db
+const populatedb = require('./db/populatedb');
+populatedb.main();
+
+// testing db in node
 // const db = require('./db/queries');
 // async function testDB() {
 //     const messages = await db.getAllMessages();

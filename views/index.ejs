@@ -15,6 +15,10 @@
                         <input type="hidden" name="messageId" value="<%= messages[i].id %>">
                         <input type="submit" value="Open">
                     </form>
+                    <form method="post" action="/delete">
+                        <input type="hidden" name="messageId" value="<%= messages[i].id %>">
+                        <input type="submit" value="Delete">
+                    </form>
                 </li>
             <% } %>
         </ul>

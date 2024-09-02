@@ -8,6 +8,11 @@ const getIndexNoParams = asyncHandler(async(req, res) => {
     res.render("index", { navLinks: navLinks, messages: dbMessages });
 })
 
+const deleteMessage = asyncHandler(async(req, res) => {
+    db.deleteMessage(req.body.messageId);
+    res.redirect('/');
+})
+
 const openMessage = asyncHandler(async(req, res) => {
     const dbMessages = await db.getAllMessages();
     let correctMessage;
@@ -24,4 +29,4 @@ const openMessage = asyncHandler(async(req, res) => {
     res.render("message", { navLinks: navLinks, message: correctMessage });    
 })
 
-module.exports = { getIndexNoParams, openMessage }
+module.exports = { getIndexNoParams, deleteMessage, openMessage }

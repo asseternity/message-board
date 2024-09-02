@@ -33,7 +33,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Message board active and listening on port: ${PORT}!`) });
 
 // testing non-db
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.render('test');
 })
 

@@ -32,11 +32,16 @@ app.use('/new', newRoute);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Message board active and listening on port: ${PORT}!`) });
 
-// testing
-const db = require('./db/queries');
-async function testDB() {
-    const messages = await db.getAllMessages();
-    console.log(messages);
-}
+// testing non-db
+app.get('/', (req, res) => {
+    res.render('test');
+})
 
-testDB();
+// testing db
+// const db = require('./db/queries');
+// async function testDB() {
+//     const messages = await db.getAllMessages();
+//     console.log(messages);
+// }
+
+// testDB();

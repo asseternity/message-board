@@ -33,13 +33,15 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Message board active and listening on port: ${PORT}!`) });
 
 // testing non-db
+const navLinks = require('./navLinks')''
+
 app.get('/test', (req, res) => {
-    res.render('test');
+    res.render('test', { navLinks: navLinks });
 })
 
 // invoking db
-const populatedb = require('./db/populatedb');
-populatedb.main();
+// const populatedb = require('./db/populatedb');
+// populatedb.main();
 
 // testing db in node
 // const db = require('./db/queries');

@@ -26,8 +26,6 @@ async function main() {
     console.log("done");
   } catch (err) {
     console.error("Error:", err);
-  } finally {
-    pool.end(); // Close the database connection
   }
 }
 

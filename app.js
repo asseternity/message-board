@@ -29,5 +29,25 @@ app.use('/', indexRoute);
 app.use('/new', newRoute);
 
 // activating the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Message board active and listening on port: ${PORT}!`) });
+
+// testing non-db
+const navLinks = require('./navLinks');
+
+app.get('/test', (req, res) => {
+    res.render('test', { navLinks: navLinks });
+})
+
+// invoking db
+// const populatedb = require('./db/populatedb');
+// populatedb.main();
+
+// testing db in node
+// const db = require('./db/queries');
+// async function testDB() {
+//     const messages = await db.getAllMessages();
+//     console.log(messages);
+// }
+
+// testDB();

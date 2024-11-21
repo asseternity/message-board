@@ -18,7 +18,7 @@ async function main() {
     // Insert initial data
     await pool.query(
       `
-            INSERT INTO messages (text, user, added) VALUES
+            INSERT INTO messages (text, "user", added) VALUES
             ('Hi there!', 'aigul3000', $1),
             ('Hey there!', 'azhar4000', $2),
             ('Hello there!', 'akhmet2000', $3)

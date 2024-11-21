@@ -10,7 +10,7 @@ async function main() {
             CREATE TABLE IF NOT EXISTS messages (
                 id SERIAL PRIMARY KEY,
                 text VARCHAR (255),
-                user VARCHAR (255),
+                "user" VARCHAR (255),
                 added TIMESTAMP
             )
         `);

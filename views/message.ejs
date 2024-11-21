@@ -1,12 +1,12 @@
 <html>
-    <head>
-        <title>Message Board - Message</title>
-    </head>
-    <body>
-        <%- include('navbar', {navLinks: navLinks}) %>
-        <h1>Message</h1>
-        <h3>Author: <%= message.username %></h3>
-        <p>Message text: <%= message.text %></p>
-        <p>Date: <%= message.added %></p>
-    </body>
+  <head>
+    <title>Message Board - Message</title>
+  </head>
+  <body>
+    <%- include('navbar', {navLinks: navLinks}) %>
+    <h1>Message</h1>
+    <h3>Author: <%= message.user %></h3>
+    <p>Message text: <%= message.text %></p>
+    <p>Date: <%= message.added %></p>
+  </body>
 </html>

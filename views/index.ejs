@@ -1,26 +1,26 @@
 <html>
-    <head>
-        <title>Message Board - Index</title>
-    </head>
-    <body>
-        <%- include('navbar', {navLinks: navLinks}) %>
-        <h1>Index Page</h1>
-        <ul>
-            <% for (let i = 0; i < messages.length; i++) { %>
-                <li>
-                    <h3> <%= messages[i].username %> </h3>
-                    <p> <%= messages[i].text %> </p>
-                    <p> <%= messages[i].added %> </p>
-                    <form method="post" action="/message">
-                        <input type="hidden" name="messageId" value="<%= messages[i].id %>">
-                        <input type="submit" value="Open">
-                    </form>
-                    <form method="post" action="/delete">
-                        <input type="hidden" name="messageId" value="<%= messages[i].id %>">
-                        <input type="submit" value="Delete">
-                    </form>
-                </li>
-            <% } %>
-        </ul>
-    </body>
+  <head>
+    <title>Message Board - Index</title>
+  </head>
+  <body>
+    <%- include('navbar', {navLinks: navLinks}) %>
+    <h1>Index Page</h1>
+    <ul>
+      <% for (let i = 0; i < messages.length; i++) { %>
+      <li>
+        <h3><%= messages[i].user %></h3>
+        <p><%= messages[i].text %></p>
+        <p><%= messages[i].added %></p>
+        <form method="post" action="/message">
+          <input type="hidden" name="messageId" value="<%= messages[i].id %>" />
+          <input type="submit" value="Open" />
+        </form>
+        <form method="post" action="/delete">
+          <input type="hidden" name="messageId" value="<%= messages[i].id %>" />
+          <input type="submit" value="Delete" />
+        </form>
+      </li>
+      <% } %>
+    </ul>
+  </body>
 </html>

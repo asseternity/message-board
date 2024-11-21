@@ -6,22 +6,29 @@ async function main() {
   console.log("seeding...");
   try {
     // Create the table if it doesn't exist
-    await pool`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS messages (
                 id SERIAL PRIMARY KEY,
                 text VARCHAR (255),
                 user VARCHAR (255),
                 added TIMESTAMP
             )
-        `;
+        `);
 
     // Insert initial data
-    await pool`
+    await pool.query(
+      `
             INSERT INTO messages (text, user, added) VALUES
-            ('Hi there!', 'aigul3000', ${new Date().toISOString()}),
-            ('Hey there!', 'azhar4000', ${new Date().toISOString()}),
-            ('Hello there!', 'akhmet2000', ${new Date().toISOString()})
-        `;
+            ('Hi there!', 'aigul3000', $1),
+            ('Hey there!', 'azhar4000', $2),
+            ('Hello there!', 'akhmet2000', $3)
+        `,
+      [
+        new Date().toISOString(),
+        new Date().toISOString(),
+        new Date().toISOString(),
+      ]
+    );
 
     console.log("done");
   } catch (err) {
